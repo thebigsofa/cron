@@ -1,0 +1,17 @@
+version: '3'
+services:
+  cron:
+    build: .
+    command: cron -f
+    environment:
+      - RAILS_ENV=production
+      - RACK_ENV=production
+    networks:
+      torii:
+        aliases:
+          - cron
+
+networks:
+  torii:
+    external:
+      name: torii
