@@ -1,7 +1,7 @@
-FROM ruby:2.5
+FROM ruby:2.6.3
 
-RUN apt-get update -qq && apt-get install -y build-essential \
-  cron
+RUN apt-get update -qq && apt-get install -y build-essential cron && \
+    rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/apt/*
 
 ENV APP_HOME /sinatra-cron
 RUN mkdir $APP_HOME

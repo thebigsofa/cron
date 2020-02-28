@@ -108,7 +108,7 @@ def send_task(body)
   Rails.logger.info("Sending #{body}")
 
   Excon.post(
-   "http://torii-rails:3006/api/v1/enqueue",
+   ENV["TORII_URL"],
    headers: { "Content-Type" => "application/x-www-form-urlencoded" },
    body: body
   )
