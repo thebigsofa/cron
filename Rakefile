@@ -1,8 +1,13 @@
 require "sinatra"
 require "excon"
 require "uri"
+require "logger"
 
 # frozen_string_literal: true
+
+
+
+
 
 namespace :bigsofa do
   desc "prints hello world"
@@ -99,16 +104,18 @@ end
 def build_body(task)
   URI.encode_www_form(
     payload: task,
-    routing_key: "platform.cron",
-    topic: "platform_topic"
+    queue: "platform.cron",
   )
 end
 
 def send_task(body)
-  Rails.logger.info("Sending #{body}")
+
+  logger = Logger.new(STDOUT)
+  logger.level = Logger::INFO
+  logger.info("Sending #{body}")
 
   Excon.post(
-   "http://torii-rails:3006/api/v1/enqueue",
+   ENV["TORII_URL"],
    headers: { "Content-Type" => "application/x-www-form-urlencoded" },
    body: body
   )

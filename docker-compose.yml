@@ -6,6 +6,7 @@ services:
     environment:
       - RAILS_ENV=production
       - RACK_ENV=production
+      - TORII_URL=http://torii-rails:3000/api/v1/enqueue
     networks:
       torii:
         aliases:
