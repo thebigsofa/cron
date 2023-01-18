@@ -66,7 +66,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
-    rack (2.1.2)
+    rack (2.2.6.2)
     rack-protection (2.0.8.1)
       rack
     rake (13.0.1)
